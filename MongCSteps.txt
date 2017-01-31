@@ -1,0 +1,23 @@
+Steps for creat MongoDB,2017/1/31
+
+1. aws create new instance, gui select & click, try cloudformation
+>sudo su
+>mkdir /mongodb;mkfs -t ext4 /dev/xvdb;mount -t ext4 /dev/xvdb /mongodb;
+>echo "/dev/xvdb /mongodb ext4 defaults,auto,noatime 0 0" >> /etc/fstab
+
+2. create rount53 record, gui select & click, 
+3. add kyang account, cmds--??
+sudo su;
+cd ~/;wget 10.23.10.72:81/useradd; bash -x ./useradd kyang; rm -f ./useradd;
+
+4. change hostname, manually
+sudo vi /etc/sysconfig/network;
+5. create swap, script
+6. install Mongo, run script
+7. cp keyfile, run script
+8. mongolog rotate, 
+cp logrotate.sh /mongodb/;echo "3 2 1 * * root /mongodb/logrotate.sh >> /log/rotate.log" >> /etc/crontab;crontab /etc/crontab;crontab -l
+
+9. config mongo, run script
+
+10. create MongoDB users

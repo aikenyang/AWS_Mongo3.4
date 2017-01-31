@@ -1,0 +1,1 @@
+ACTION=="add", KERNEL=="xvdb", ATTR{bdi/read_ahead_kb}="16"
