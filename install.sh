@@ -7,8 +7,11 @@ sudo yum install -y git
 git clone https://github.com/aikenyang/AWS_Mongo3.4.git
 
 #0.2 preparation, disk config
-sudo mkdir /data;sudo mkfs -t ext4 /dev/xvdb;sudo mount -t ext4 /dev/xvdb /data;
-sudo echo "/dev/xvdb /data ext4 defaults,auto,noatime 0 0" >> /etc/fstab
+sudo yum install -y xfsprogs
+sudo mkdir /data
+sudo mkfs.xfs -f /dev/xvdb
+sudo mount -t xfs /dev/xvdb /data
+sudo echo "/dev/xvdb /data xfs defaults,auto,noatime 0 0" >> /etc/fstab
 
 #1. change OS ulimit, /etc/security/limits.conf
 #verify, ulimit -a

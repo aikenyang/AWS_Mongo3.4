@@ -1,0 +1,52 @@
+#replica set config
+1. setup /etc/hosts 
+
+2. config replica set primary
+
+3. create users
+3.1 create userAdmin
+RS1:PRIMARY> use admin
+RS1:PRIMARY> db.createUser(
+...   {
+...     user: "siteUserAdmin",
+...     pwd: "xxxxxx",
+...     roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+...   }
+... )
+
+3.2. create root user
+$ mongo -u siteUserAdmin -p Tomo@@72 admin
+RS1:PRIMARY> use admin
+RS1:PRIMARY> db.createUser(
+...   {
+...     user: "admin",
+...     pwd: "xxxxxxx",
+...     roles: [ { role: "root", db: "admin" } ]
+...   }
+... )
+
+3.3 create dba users
+RS1:PRIMARY> db.createUser(
+...   {
+...     user: "xuecheng",
+...     pwd: "xxxxxxx",
+...     roles: [ { role: "dbAdminAnyDatabase" , db: "admin" } ]
+...   }
+... )
+
+3.4 create readOnly user
+RS1:PRIMARY> db.createUser(
+...   {
+...     user: "tableau",
+...     pwd: "xxxxxx",
+...     roles: [ { role: "readAnyDatabase" , db: "admin" } ]
+...   }
+... )
+
+3.5 check user created
+RS1:PRIMARY> db.system.users.find()
+
+4. add secondary nodes
+$ mongo -u admin -p xxxxxxx admin
+RS1:PRIMARY> rs.add("mongo2:27017")
+RS1:PRIMARY> rs.add("mongo3:27017")
