@@ -8,7 +8,7 @@ yum install -y git
 #git clone https://github.com/aikenyang/Mongo3.4.git
 git clone https://github.com/aikenyang/AWS_Mongo3.4.git
 
-#0.2 preparation, create swap
+#0.2 preparation, create swap, 2GB
 dd if=/dev/zero of=/mnt/swapfile bs=2048 count=1048576
 chmod 600 /mnt/swapfile
 /sbin/mkswap /mnt/swapfile
